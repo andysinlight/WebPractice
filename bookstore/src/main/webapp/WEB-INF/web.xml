@@ -5,13 +5,24 @@
          version="3.1">
     <servlet>
         <servlet-name>client</servlet-name>
-        <servlet-class>client</servlet-class>
+        <servlet-class>controller.ClientServlet</servlet-class>
     </servlet>
+
+    <filter>
+        <filter-name>chartsetFilter</filter-name>
+        <filter-class>filter.CharsetFilter</filter-class>
+    </filter>
+
 
     <servlet-mapping>
         <servlet-name>client</servlet-name>
-        <url-pattern>/client</url-pattern>
+        <url-pattern>/servlet/client</url-pattern>
     </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>chartsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
 

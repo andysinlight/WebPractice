@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link type="text/css" rel="stylesheet" href="../../css/base.css" >
+
+</head>
+<body>
+    <h1>后台管理</h1>
+    <div>
+        <a href="add_category.html">添加分类</a>
+        <a href="show_category.html">查看分类</a>
+    </div>
+
+    <br/>
+    <form action="/servlet/client?op=add_category" method="post">
+        <table border="1" align="center">
+            <tr >
+                <td>分类名称：</td>
+                <td>
+                    <input type="text" name="name" >
+                </td>
+            </tr>
+            <tr >
+                <td>分类描述：</td>
+                <td>
+                   <textarea name="des" aria-atomic="true"></textarea>
+                </td>
+            </tr>
+
+            <tr >
+                <td align="center"  colspan="2">
+                    <input type="submit" value="提交：">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
