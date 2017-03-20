@@ -35,7 +35,15 @@ public class ClientServlet extends HttpServlet {
         } else if ("delete_category".equals(op)) {
             String id = req.getParameter("id");
             deleteCategory(id, resp);
+        }else if("add_book".equals(op)){
+            addBook(req,resp);
         }
+
+    }
+
+    private void addBook(HttpServletRequest req, HttpServletResponse resp) {
+//        req.get
+
 
     }
 

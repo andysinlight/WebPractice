@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link type="text/css" rel="stylesheet" href="../../css/base.css">
+
+</head>
+<body>
+<h1>后台管理</h1>
+<div>
+    <a href="add_category.html">添加分类</a>
+    <a href="show_category.html">查看分类</a>
+    <a href="add_book.html">添加图书</a>
+</div>
+
+<br/>
+<form action="/servlet/client?op=add_book" method="post" enctype="multipart/form-data">
+    <table border="1" align="center">
+        <tr>
+            <td>书本名称：</td>
+            <td>
+                <input type="text" name="name">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                分类：
+            </td>
+            <td>
+                <select name="category">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>书本图片：</td>
+            <td>
+                <input >
+            </td>
+
+        </tr>
+
+
+
+        <tr>
+            <td>书本描述：</td>
+            <td>
+                <textarea name="des" aria-atomic="true"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="2">
+                <input type="submit" value="提交：">
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

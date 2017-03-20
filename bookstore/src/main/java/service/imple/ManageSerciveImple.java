@@ -1,5 +1,6 @@
 package service.imple;
 
+import bean.Book;
 import bean.Category;
 import dao.CategoryDao;
 import service.ManageService;
@@ -31,5 +32,18 @@ public class ManageSerciveImple implements ManageService {
 
     public List<Category> getCategories() {
         return mCategoryDao.getCategories();
+    }
+
+
+    public boolean addBook(Book book) {
+        return false;
+    }
+
+    public boolean deleteBook(String id) {
+        return false;
+    }
+
+    public List<Category> getBooks() {
+        return null;
     }
 }
