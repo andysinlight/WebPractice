@@ -5,3 +5,6 @@
 /BookStore/.project
 /BookStore/.classpath
 /BookStore/WebRoot/WEB-INF/classes
+/build
+/out
+/.idea
