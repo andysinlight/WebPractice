@@ -1,0 +1,49 @@
+use bookstore;
+CREATE TABLE book(
+  id VARCHAR (100) NOT NULL,
+  name VARCHAR (100) NOT NULL,
+  des VARCHAR (255) ,
+  category VARCHAR (100) NOT NULL,
+  price FLOAT NULL
+);
+ALTER TABLE book ADD path NVARCHAR (100) NOT NULL;
+ALTER TABLE book ADD img_name NVARCHAR (100) NOT NULL;
+
+CREATE TABLE user(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR (100) NOT NULL,
+  phone VARCHAR (100) NOT NULL,
+  address VARCHAR (100) NOT NULL,
+  active tinyint(1) DEFAULT 0,
+  email  VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE rule(
+  id INT  KEY AUTO_INCREMENT,
+  name VARCHAR (100) NOT NULL,
+  des VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE function(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR (100) NOT NULL,
+  des VARCHAR (255) NOT NULL
+);
+ALTER TABLE function ADD action NVARCHAR (100) ;
+
+
+
+CREATE TABLE user_rule(
+   uid INT,
+   rid INT
+);
+
+CREATE TABLE rule_function(
+   rid INT,
+   fid INT
+);
+
+
+
+
+
