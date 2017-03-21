@@ -16,5 +16,5 @@ public interface ManageService {
 
     boolean addBook(Book book);
     boolean deleteBook(String id);
-    List<Category> getBooks();
+    List<Book> getBooks(int index);
 }

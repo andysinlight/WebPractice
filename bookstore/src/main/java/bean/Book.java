@@ -4,7 +4,7 @@ package bean;
  * Created by Administrator on 2017/3/17.
  */
 public class Book {
-    String id;
+    long id;
     String name;
     String des;
     String category;
@@ -13,7 +13,7 @@ public class Book {
     float price;
 
 
-    public Book(String id, String name, String des, String category, String path, String img_name, float price) {
+    public Book(long id, String name, String des, String category, String path, String img_name, float price) {
         this.id = id;
         this.name = name;
         this.des = des;
@@ -26,11 +26,11 @@ public class Book {
     public Book() {
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

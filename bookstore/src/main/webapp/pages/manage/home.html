@@ -3,6 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>后台管理</title>
+    <script type="application/javascript">
+        window.onload=function () {
+            var request = new XMLHttpRequest();
+            request.open("GET","/servlet/client?op=show_home");
+            request.send();
+            request.onreadystatechange=function () {
+                if(request.readyState==4&&request.status==200){
+                    var bookList = eval('['+request.responseText+']');
+                    for(var i=0;i<bookList.length;iII){
+                        var book = bookList[i];
+                    }
+                }
+            }
+        }
+
+
+
+    </script>
+
+
+
 </head>
 <body>
     <h1>后台管理</h1>

@@ -5,6 +5,28 @@
     <title>后台管理</title>
     <link type="text/css" rel="stylesheet" href="../../css/base.css">
 
+    <script type="application/javascript">
+        window.onload= function () {
+             var request = new XMLHttpRequest();
+             request.open("POST","/servlet/manage_client?op=show_categories");
+             request.send();
+             request.onreadystatechange = function () {
+                if(request.readyState==4&&request.status==200){
+//                    var content ="<option>----请选择分类----</option>";
+                    var result = eval('(' + request.responseText + ')');
+                    for(var i=0;i<result.length;i++){
+                        content += "<option value="+result[i].id+">"+result[i].name+"</option>";
+                        alert(content);
+                    }
+                    var elementById = document.getElementById("category_body");
+//                    alert(elementById);
+                    elementById.innerHTML = content;
+                }
+             }
+        }
+    </script>
+
+
 </head>
 <body>
 <h1>后台管理</h1>
@@ -29,12 +51,7 @@
                 分类：
             </td>
             <td>
-                <select name="category">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                </select>
+                <select name="category" id="category_body"/>
             </td>
         </tr>
 

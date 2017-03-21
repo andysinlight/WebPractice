@@ -19,8 +19,7 @@ public class BookDao {
     public boolean addBook(Book book) {
         int update = 0;
         try {
-            update = mQueryRunner.update("insert into book(id,name,des,category,price,path,img_name) values(?,?,?,?,?,?,?)",
-                    book.getId(),
+            update = mQueryRunner.update("insert into book(name,des,category,price,path,img_name) values(?,?,?,?,?,?)",
                     book.getName(),
                     book.getDes(),
                     book.getCategory(),
@@ -61,7 +60,7 @@ public class BookDao {
                         public Book handle(ResultSet resultSet) throws SQLException {
                             Book book = null;
                             while (resultSet.next()) {
-                               return new Book(resultSet.getString(1),
+                               return new Book(resultSet.getLong(1),
                                         resultSet.getString(2),
                                         resultSet.getString(3),
                                         resultSet.getString(4),
@@ -85,7 +84,7 @@ public class BookDao {
                         public List<Book> handle(ResultSet resultSet) throws SQLException {
                             List<Book> books =new ArrayList<Book>();
                             while (resultSet.next()){
-                                Book book = new Book(resultSet.getString(1),
+                                Book book = new Book(resultSet.getLong(1),
                                         resultSet.getString(2),
                                         resultSet.getString(3),
                                         resultSet.getString(4),
@@ -110,7 +109,7 @@ public class BookDao {
                         public List<Book> handle(ResultSet resultSet) throws SQLException {
                             List<Book> books = new ArrayList<Book>();
                             while (resultSet.next()) {
-                                Book book = new Book(resultSet.getString(1),
+                                Book book = new Book(resultSet.getLong(1),
                                         resultSet.getString(2),
                                         resultSet.getString(3),
                                         resultSet.getString(4),

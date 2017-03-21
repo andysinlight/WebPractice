@@ -9,7 +9,7 @@
         var etr = args.parentNode.parentNode;
 
         var httpRequest = new XMLHttpRequest();
-        var url = "/servlet/client?op=delete_category&id="+etr.getAttribute("id");
+        var url = "/servlet/manage_client?op=delete_category&id="+etr.getAttribute("id");
         httpRequest.open("POST", url);
         httpRequest.send();
         httpRequest.onreadystatechange = function () {
@@ -22,7 +22,7 @@
 
     window.onload = function () {
         var httpRequest = new XMLHttpRequest();
-        var url = "/servlet/client?op=show_categories";
+        var url = "/servlet/manage_client?op=show_categories";
         httpRequest.open("POST", url);
         httpRequest.send();
         httpRequest.onreadystatechange = function () {

@@ -2,6 +2,7 @@ package service.imple;
 
 import bean.Book;
 import bean.Category;
+import dao.BookDao;
 import dao.CategoryDao;
 import service.ManageService;
 import utils.TextUtils;
@@ -14,6 +15,7 @@ import java.util.UUID;
  */
 public class ManageSerciveImple implements ManageService {
     CategoryDao mCategoryDao = new CategoryDao();
+    BookDao mBookDao = new BookDao();
 
     public boolean addCategory(Category category) {
         if(TextUtils.isEmpty(category.getId())){
@@ -36,14 +38,14 @@ public class ManageSerciveImple implements ManageService {
 
 
     public boolean addBook(Book book) {
-        return false;
+        return mBookDao.addBook(book);
     }
 
     public boolean deleteBook(String id) {
         return false;
     }
 
-    public List<Category> getBooks() {
-        return null;
+    public List<Book> getBooks(int index) {
+        return mBookDao.getBooks(index,5);
     }
 }
