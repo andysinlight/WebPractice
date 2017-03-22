@@ -1,6 +1,7 @@
 package controller;
 
 import bean.Book;
+import bean.Category;
 import com.google.gson.Gson;
 import service.ManageService;
 import service.imple.ManageSerciveImple;
@@ -36,8 +37,17 @@ public class ClientServlet extends HttpServlet {
     }
 
     private String getBooks() {
-        List<Book> books = mService.getBooks(1);
+        List<Book> books = mService.getBooks(0);
+        for(int i=0;i<books.size();i++){
+            Book book = books.get(i);
+            Category category = mService.getCategorieByID(book.getCategory());
+            if(category!=null)book.setCategory_name(category.getName());
+        }
+
+
         Gson gson = new Gson();
-        return gson.toJson(books);
+        String s = gson.toJson(books);
+        s = s.replaceAll(getServletContext().getContextPath(),"");
+        return s;
     }
 }

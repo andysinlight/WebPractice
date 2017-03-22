@@ -36,6 +36,10 @@ public class ManageSerciveImple implements ManageService {
         return mCategoryDao.getCategories();
     }
 
+    public Category getCategorieByID(String id) {
+        return mCategoryDao.getCategoryByID(id);
+    }
+
 
     public boolean addBook(Book book) {
         return mBookDao.addBook(book);

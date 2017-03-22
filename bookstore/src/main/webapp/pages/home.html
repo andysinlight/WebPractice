@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:max-width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="../css/base.css">
+
+    <script type="application/javascript">
+        window.onload = function () {
+            var request = new XMLHttpRequest();
+            request.open("GET", "/servlet/client?op=show_home");
+            request.send();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var bookList = eval('('+ request.responseText +')');
+                    var content="";
+                    for (var i = 0; i < bookList.length; i++) {
+                        var book = bookList[i];
+                        content += makeBook(book);
+                    }
+
+                    document.getElementById("content").innerHTML = content;
+
+                }
+            }
+        }
+
+        function makeBook(book) {
+            var url = book.path+"\\" + book.img_name;
+            url = url.replace(/\\/g,"/");
+            var str = "<div ><img src=" + url+ " width=200 height=250><br>" +
+                book.name + "<br>" + book.price + "<br>" + book.category_name + "<br></div> <br>";
+            return str;
+        }
+
+
+    </script>
+</head>
+<body>
+
+<div id="content"/>
+
+
+</body>
+</html>

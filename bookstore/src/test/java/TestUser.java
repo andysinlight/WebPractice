@@ -26,8 +26,22 @@ public class TestUser {
 
     @Test
     public void getUser() {
-        assert userDao.getUser(1l) != null;
+        double[] nums = {1.2,2,4,12,56,8.7,234,45.2};
+        double max = getMax(nums);
+        System.out.print("max:"+max);
+
     }
+
+    public double getMax(double[] nums){
+        int x = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>nums[x]){
+                x = i;
+            }
+        }
+        return  nums[x];
+    }
+
 
 
     @Test

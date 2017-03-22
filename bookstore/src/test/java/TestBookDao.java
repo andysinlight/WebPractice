@@ -18,14 +18,14 @@ public class TestBookDao {
         5ad04019-7ac8-4ab5-b869-5341dfa0548b
         d13d2e6f-ea55-4134-9ded-dcedb5982ed8*/
 
-        Book book = new Book(UUID.randomUUID().toString(),
+     /*   Book book = new Book(UUID.randomUUID().toString(),
                 "java",
                 "一本学习java 的好书",
                 "5ad04019-7ac8-4ab5-b869-5341dfa0548b",
                 "/book",
                 "book1",
-                100f);
-        assert mBookDao.addBook(book);
+                100f);*/
+//        assert mBookDao.addBook(book);
     }
 
     @Test

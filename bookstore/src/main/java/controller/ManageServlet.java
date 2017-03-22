@@ -27,7 +27,7 @@ import java.util.*;
  */
 public class ManageServlet extends HttpServlet {
     ManageService mManageService = new ManageSerciveImple();
-    static {
+    /*static {
         InputStream inputStream = ManageServlet.class.getClassLoader().getResourceAsStream("constant.properties");
         Properties properties = new Properties();
         try {
@@ -41,11 +41,12 @@ public class ManageServlet extends HttpServlet {
                     stringBuilder.append(File.separator);
                 }
             }
+
             img_store_root_path = stringBuilder.toString().substring(1,stringBuilder.length()-1);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     private static String img_store_root_path;
 
@@ -159,13 +160,14 @@ public class ManageServlet extends HttpServlet {
                     //			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                     //
                     //			String childDirectory  = df.format(now);
-
+                    img_store_root_path = getServletContext().getRealPath("imgs");
 
                     //按照文件名的hashCode计算存储目录
                     String childDirectory = makeChildDirectory(img_store_root_path,fileName);
 
                     String storeDirectoryPath = img_store_root_path+File.separator+childDirectory;
-                    map.put("path",storeDirectoryPath);
+                    String path =getServletContext().getContextPath() + File.separator + "imgs" + File.separator + childDirectory;
+                    map.put("path", path);
                     File storeDirectory = new File(storeDirectoryPath);
                     if(!storeDirectory.exists()){
                         storeDirectory.mkdirs();

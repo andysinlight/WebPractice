@@ -44,6 +44,28 @@ public class CategoryDao {
         return false;
     }
 
+    public Category getCategoryByID(String id) {
+        try {
+            return mRunner.query("select * from category where id = ?", new ResultSetHandler <Category>() {
+
+                public Category handle(ResultSet resultSet) throws SQLException {
+                    if(resultSet.next()) {
+                        Category category = new Category();
+                        category.setId(resultSet.getString(1));
+                        category.setName(resultSet.getString(2));
+                        category.setDes(resultSet.getString(3));
+                        return category;
+                    }
+                    return null;
+                }
+            },id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     public List<Category> getCategories() {
         try {
             return mRunner.query("select * from category", new ResultSetHandler<List<Category>>() {

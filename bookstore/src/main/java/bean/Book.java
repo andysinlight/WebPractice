@@ -8,6 +8,7 @@ public class Book {
     String name;
     String des;
     String category;
+    String category_name;
     String path;
     String img_name;
     float price;
@@ -24,6 +25,14 @@ public class Book {
     }
 
     public Book() {
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
     public long getId() {

@@ -13,6 +13,7 @@ public interface ManageService {
     boolean deleteCategory(String id);
     boolean updateCategory(Category category);
     List<Category> getCategories();
+    Category getCategorieByID(String id);
 
     boolean addBook(Book book);
     boolean deleteBook(String id);
