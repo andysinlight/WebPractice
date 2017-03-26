@@ -146,4 +146,23 @@ public class BookDao {
         }
         return 0;
     }
+
+    public int getRecordsCount(String category) {
+        try {
+            return mQueryRunner.query("select count(category) from book",
+                    new ResultSetHandler<Integer>() {
+                        private int mCount;
+
+                        public Integer handle(ResultSet resultSet) throws SQLException {
+                            while (resultSet.next()) {
+                                mCount = resultSet.getInt(1);
+                            }
+                            return mCount;
+                        }
+                    });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

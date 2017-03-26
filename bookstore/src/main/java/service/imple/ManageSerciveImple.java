@@ -59,7 +59,7 @@ public class ManageSerciveImple implements ManageService {
     }
 
     public Page<Book>  getBooksByCategoty(int index, String category) {
-        int recordsCount = mBookDao.getRecordsCount();
+        int recordsCount = mBookDao.getRecordsCount(category);
         Page<Book> page = new Page<Book>(index,recordsCount);
         List<Book> books = mBookDao.getBooksByCategory(category, page.getStartIndex(), page.getEndIndx());
         page.setData(books);

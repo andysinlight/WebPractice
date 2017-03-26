@@ -12,18 +12,25 @@
             getBookByID(bookid);
         }
 
-        function getBookByID(arg) {
+        function getBookByID(id,index) {
             var request = new XMLHttpRequest();
-            request.open("GET", "/servlet/client?op=show_home&id="+arg);
+            request.open("GET", "/servlet/client?op=show_home&id="+id+"index="+index);
             request.send();
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    var bookList = eval('('+ request.responseText +')');
+                    var page = eval('('+ request.responseText +')');
+                    var bookList = page.data;
                     var content="";
                     for (var i = 0; i < bookList.length; i++) {
                         var book = bookList[i];
                         content += makeBook(book);
                     }
+                    var bottom="";
+                    for (var i = 1; i <= page.pageNum; i++) {
+                        bottom += "<input type=button value="+i+" onclick=getBook("+i+")>";
+//                        alert(bottom);
+                    }
+                    document.getElementById("pages").innerHTML = bottom;
                     document.getElementById("books").innerHTML = content;
                 }
             }
@@ -77,6 +84,8 @@
 
 <div id="categories"></div><br/>
 <div id="books"></div><br/>
+<div id="pages"></div><br/>
+
 
 
 </body>
