@@ -8,20 +8,30 @@
 
     <script type="application/javascript">
         window.onload = function () {
+            getBook(1);
+        }
+
+        function getBook(index) {
+//            alert(index);
             var request = new XMLHttpRequest();
-            request.open("GET", "/servlet/client?op=show_home");
+            request.open("GET", "/servlet/client?op=show_home&index="+index);
             request.send();
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    var bookList = eval('('+ request.responseText +')');
-                    var content="";
+                    var page = eval('(' + request.responseText + ')');
+                    var bookList = page.data;
+                    var content = "";
                     for (var i = 0; i < bookList.length; i++) {
                         var book = bookList[i];
                         content += makeBook(book);
                     }
-
+                    var bottom="";
+                    for (var i = 1; i <= page.pageNum; i++) {
+                        bottom += "<input type=button value="+i+" onclick=getBook("+i+")>";
+//                        alert(bottom);
+                    }
+                    document.getElementById("pages").innerHTML = bottom;
                     document.getElementById("content").innerHTML = content;
-
                 }
             }
         }
@@ -39,8 +49,7 @@
 </head>
 <body>
 
-<div id="content"/>
-
-
+<div id="content"></div><br/>
+<div id="pages"></div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package service;
 
 import bean.Book;
 import bean.Category;
+import bean.Page;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface ManageService {
 
     boolean addBook(Book book);
     boolean deleteBook(String id);
-    List<Book> getBooks(int index);
+    Page<Book> getBooks(int index);
+    Page<Book> getBooksByCategoty(int index, String category);
 }

@@ -2,6 +2,7 @@ package service.imple;
 
 import bean.Book;
 import bean.Category;
+import bean.Page;
 import dao.BookDao;
 import dao.CategoryDao;
 import service.ManageService;
@@ -49,7 +50,19 @@ public class ManageSerciveImple implements ManageService {
         return false;
     }
 
-    public List<Book> getBooks(int index) {
-        return mBookDao.getBooks(index,5);
+    public Page<Book> getBooks(int index) {
+        int recordsCount = mBookDao.getRecordsCount();
+        Page<Book> page = new Page<Book>(index,recordsCount);
+        List<Book> books = mBookDao.getBooks(page.getStartIndex(),page.getEndIndx());
+        page.setData(books);
+        return page;
+    }
+
+    public Page<Book>  getBooksByCategoty(int index, String category) {
+        int recordsCount = mBookDao.getRecordsCount();
+        Page<Book> page = new Page<Book>(index,recordsCount);
+        List<Book> books = mBookDao.getBooksByCategory(category, page.getStartIndex(), page.getEndIndx());
+        page.setData(books);
+        return page;
     }
 }

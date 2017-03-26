@@ -60,7 +60,7 @@ public class BookDao {
                         public Book handle(ResultSet resultSet) throws SQLException {
                             Book book = null;
                             while (resultSet.next()) {
-                               return new Book(resultSet.getLong(1),
+                                return new Book(resultSet.getLong(1),
                                         resultSet.getString(2),
                                         resultSet.getString(3),
                                         resultSet.getString(4),
@@ -77,13 +77,13 @@ public class BookDao {
         return null;
     }
 
-    public List<Book> getBooksByCategory(String category,int start, int count) {
+    public List<Book> getBooksByCategory(String category, int start, int count) {
         try {
             return mQueryRunner.query("select id,name,des,category,path,img_name,price from book  where category = ?limit ?,?",
                     new ResultSetHandler<List<Book>>() {
                         public List<Book> handle(ResultSet resultSet) throws SQLException {
-                            List<Book> books =new ArrayList<Book>();
-                            while (resultSet.next()){
+                            List<Book> books = new ArrayList<Book>();
+                            while (resultSet.next()) {
                                 Book book = new Book(resultSet.getLong(1),
                                         resultSet.getString(2),
                                         resultSet.getString(3),
@@ -95,7 +95,7 @@ public class BookDao {
                             }
                             return books;
                         }
-                    },category,start,count);
+                    }, category, start, count);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -128,4 +128,22 @@ public class BookDao {
     }
 
 
+    public int getRecordsCount() {
+        try {
+            return mQueryRunner.query("select count(1) from book",
+                    new ResultSetHandler<Integer>() {
+                        private int mCount;
+
+                        public Integer handle(ResultSet resultSet) throws SQLException {
+                            while (resultSet.next()) {
+                                mCount = resultSet.getInt(1);
+                            }
+                            return mCount;
+                        }
+                    });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

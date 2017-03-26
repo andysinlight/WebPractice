@@ -6,6 +6,6 @@ package utils;
 public class TextUtils {
 
     public static boolean isEmpty(String text){
-        return text==null||"".equals(text);
+        return text==null||"".equals(text)||"null".equals(text);
     }
 }
