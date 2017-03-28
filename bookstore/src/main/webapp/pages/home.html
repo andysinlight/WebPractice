@@ -14,7 +14,7 @@
         function getBook(index) {
 //            alert(index);
             var request = new XMLHttpRequest();
-            request.open("GET", "/servlet/client?op=show_home&index="+index);
+            request.open("GET", "/bookstore/servlet/client?op=show_home&index="+index);
             request.send();
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
