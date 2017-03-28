@@ -7,34 +7,39 @@
     <link type="text/css" rel="stylesheet" href="../css/base.css">
 
     <script type="application/javascript">
-        window.onload = function () {
-            getBook(1);
+
+        function getCategory(arg) {
+            var bookid = arg.getAttribute("id");
+            var index = arg.getAttribute("index");
+            getBookByID(bookid,index);
         }
 
-        function getBook(index) {
-//            alert(index);
+        function getBookByID(id,index) {
             var request = new XMLHttpRequest();
-            request.open("GET", "/bookstore/servlet/client?op=show_home&index="+index);
+            request.open("GET", "/bookstore/servlet/client?op=show_home&id="+id+"&index="+index);
             request.send();
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    var page = eval('(' + request.responseText + ')');
+                    var page = eval('('+ request.responseText +')');
                     var bookList = page.data;
-                    var content = "";
+                    var content="";
                     for (var i = 0; i < bookList.length; i++) {
                         var book = bookList[i];
                         content += makeBook(book);
                     }
                     var bottom="";
                     for (var i = 1; i <= page.pageNum; i++) {
-                        bottom += "<input type=button value="+i+" onclick=getBook("+i+")>";
+//                        bottom +="<input type=button value="+i+" id="+i+" onclick=getBookByID(id,i)>";
+                        bottom +="<input type=button value="+i+" id="+id+" index="+i+" onclick=getCategory(this)>";
+
 //                        alert(bottom);
                     }
                     document.getElementById("pages").innerHTML = bottom;
-                    document.getElementById("content").innerHTML = content;
+                    document.getElementById("books").innerHTML = content;
                 }
             }
         }
+
 
         function makeBook(book) {
             var url = book.path+"\\" + book.img_name;
@@ -45,11 +50,32 @@
         }
 
 
+
+        window.onload= function () {
+            getBookByID("null",0);
+            var request = new XMLHttpRequest();
+            var url = "/bookstore/servlet/manage_client?op=show_categories";
+            request.open("POST",url);
+            request.send();
+            request.onreadystatechange = function () {
+                if(request.readyState==4&&request.status==200){
+                    var result = eval('(' + request.responseText + ')');
+                    var  content ="<input type=button value=All onclick=getCategory(this)>";
+                    for(var i=0;i<result.length;i++){
+                        content +="<input type=button value="+result[i].name+" id="+result[i].id+" index=0 onclick=getCategory(this)>";
+                    }
+                    var elementById = document.getElementById("categories");
+                    elementById.innerHTML = content;
+                }
+            }
+        }
+
     </script>
+
 </head>
 <body>
-
-<div id="content"></div><br/>
-<div id="pages"></div>
+<div id="categories"></div><br/>
+<div id="books"></div><br/>
+<div id="pages"></div><br/>
 </body>
 </html>

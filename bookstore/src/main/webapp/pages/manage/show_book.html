@@ -9,7 +9,8 @@
 
         function getCategory(arg) {
             var bookid = arg.getAttribute("id");
-            getBookByID(bookid);
+            var index = arg.getAttribute("index");
+            getBookByID(bookid,index);
         }
 
         function getBookByID(id,index) {
@@ -27,7 +28,9 @@
                     }
                     var bottom="";
                     for (var i = 1; i <= page.pageNum; i++) {
-                        bottom += "<input type=button value="+i+" onclick=getBook("+i+")>";
+//                        bottom +="<input type=button value="+i+" id="+i+" onclick=getBookByID(id,i)>";
+                        bottom +="<input type=button value="+i+" id="+id+" index="+i+" onclick=getCategory(this)>";
+
 //                        alert(bottom);
                     }
                     document.getElementById("pages").innerHTML = bottom;
@@ -48,6 +51,7 @@
 
 
         window.onload= function () {
+            getBookByID("null",0);
              var request = new XMLHttpRequest();
             var url = "/bookstore/servlet/manage_client?op=show_categories";
             request.open("POST",url);
@@ -57,7 +61,7 @@
                     var result = eval('(' + request.responseText + ')');
                     var  content ="<input type=button value=All onclick=getCategory(this)>";
                     for(var i=0;i<result.length;i++){
-                        content +="<input type=button value="+result[i].name+" id="+result[i].id+" onclick=getCategory(this)>";
+                        content +="<input type=button value="+result[i].name+" id="+result[i].id+" index=0 onclick=getCategory(this)>";
                     }
                     var elementById = document.getElementById("categories");
                     elementById.innerHTML = content;

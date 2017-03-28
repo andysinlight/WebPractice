@@ -149,7 +149,7 @@ public class BookDao {
 
     public int getRecordsCount(String category) {
         try {
-            return mQueryRunner.query("select count(category) from book",
+            return mQueryRunner.query("select count(*) from book where category='"+category+"'",
                     new ResultSetHandler<Integer>() {
                         private int mCount;
 

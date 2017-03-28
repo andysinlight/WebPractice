@@ -60,7 +60,7 @@ public class ClientServlet extends HttpServlet {
         }
         Gson gson = new Gson();
         String s = gson.toJson(page);
-        s = s.replaceAll(getServletContext().getContextPath(), "");
+//        s = s.replaceAll(getServletContext().getContextPath(), "");
         return s;
     }
 }

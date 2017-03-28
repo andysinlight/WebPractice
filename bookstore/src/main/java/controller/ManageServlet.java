@@ -146,7 +146,7 @@ public class ManageServlet extends HttpServlet {
 
             //用户没有选择上传文件时
             if(fileName!=null&&!fileName.equals("")){
-                fileName = UUID.randomUUID().toString()+"_"+ FilenameUtils.getName(fileName);
+                fileName = UUID.randomUUID().toString();
 
                 //扩展名
                 String extension = FilenameUtils.getExtension(fileName);
